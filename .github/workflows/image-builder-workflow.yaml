@@ -13,6 +13,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -26,6 +28,8 @@ jobs:
       - name: build and push docker image
         uses: docker/build-push-action@v2
         with:
+          context: ./build
+          file: ./build/Dockerfile
           push: true
           tags: artifactory.internal.sysdig.com/jmx-exporter:latest
           secrets: |
