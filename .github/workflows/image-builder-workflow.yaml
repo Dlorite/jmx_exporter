@@ -26,12 +26,8 @@ jobs:
           username: david.lorite@sysdig.com
           password: ${{ secrets.ARTI_TOKEN }}
       - name: Build docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: ./build
-          file: ./build/Dockerfile
-          push: false
-          tags: artifactory.internal.sysdig.com/jmx-exporter:latest
+        run: |
+          docker build -t artifactory.internal.sysdig.com/jmx-exporter:latest ./build/
       - name: Push the image
         run: |
           docker push artifactory.internal.sysdig.com/jmx-exporter:latest
