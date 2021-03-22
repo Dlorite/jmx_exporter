@@ -11,6 +11,6 @@ RUN mkdir -p /opt/jmx_exporter
 RUN curl -L https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_httpserver/$VERSION/$JAR -o /opt/jmx_exporter/$JAR
 COPY start.sh /opt/jmx_exporter/
 COPY config.yml /opt/jmx_exporter/
-RUN chmod g+rwX /opt/jmx_exporter/
+RUN chmod  -R g+rwX /opt/jmx_exporter
 
 CMD ["usr/local/bin/dumb-init", "/opt/jmx_exporter/start.sh"]
