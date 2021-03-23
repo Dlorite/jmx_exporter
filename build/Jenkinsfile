@@ -18,16 +18,10 @@ pipeline {
                 script {
                     docker.withRegistry("https://${env.ARTIFACTORY_URL}",  registryCredential) {                        
                         sh """docker pull ${env.ARTIFACTORY_URL}/jmx-exporter:latest"""
-                        sh """docker images"""
                     }
                 }
             }
         }
-        stage('Scanning Image') {
-            steps {
-                sysdig engineCredentialsId: 'Secure-Scanning', name: '${env.ARTIFACTORY_URL}/jmx-exporter:latest', inlineScanning: true
-        }
-    }
         stage('Push image to Quay'){
             steps {
                 script {
