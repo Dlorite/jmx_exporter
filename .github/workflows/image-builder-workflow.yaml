@@ -37,8 +37,6 @@ jobs:
           image-tag: "artifactory.internal.sysdig.com/jmx-exporter:latest"
           sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
           ignore-failed-scan: true
-          input-type: docker-daemon
-          run-as-user: root
 
           
       - name: Sarif report
