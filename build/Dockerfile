@@ -15,7 +15,6 @@ RUN apk update && apk upgrade && apk --update add curl && rm -rf /tmp/* /var/cac
 ENV VERSION 0.15.0
 ENV JAR jmx_prometheus_httpserver-$VERSION-jar-with-dependencies.jar
 COPY --from=javabuilder /opt/jmx_exporter/jmx_prometheus_javaagent/target/jmx_prometheus_javaagent-0.15.1-SNAPSHOT.jar /opt/jmx_exporter/$JAR
-RUN curl --insecure -L https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64 -o usr/local/bin/dumb-init && chmod +x /usr/local/bin/dumb-init
 
 RUN mkdir -p /opt/jmx_exporter
 COPY build/start.sh /opt/jmx_exporter/
@@ -25,4 +24,4 @@ RUN chmod -R +x /opt/jmx_exporter
 EXPOSE 5556
 USER 1001
 
-CMD ["usr/local/bin/dumb-init", "/opt/jmx_exporter/start.sh"]
+CMD ["/opt/jmx_exporter/start.sh"]

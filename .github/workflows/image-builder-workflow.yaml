@@ -40,15 +40,13 @@ jobs:
           input-type: docker-daemon
           run-as-user: root
 
-
-          
       - name: Sarif report
         uses: github/codeql-action/upload-sarif@v1  
         if: always()
         with:
           sarif_file: ${{ steps.scan-local.outputs.sarifReport }}
 
-      - name: Build docker image
+      - name: Change the tag of the image
         run: |
           docker tag temp-jmx-exporter:latest artifactory.internal.sysdig.com/jmx-exporter:latest
 
