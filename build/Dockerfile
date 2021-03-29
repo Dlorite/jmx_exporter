@@ -12,9 +12,9 @@ FROM anapsix/alpine-java:8
 
 RUN apk update && apk upgrade && apk --update add curl && rm -rf /tmp/* /var/cache/apk/*
 
-ENV VERSION 0.15.0
+ENV VERSION 0.15.1
 ENV JAR jmx_prometheus_httpserver-$VERSION-jar-with-dependencies.jar
-COPY --from=javabuilder /opt/jmx_exporter/jmx_prometheus_httpserver/target/jmx_prometheus_httpserver-$VERSION-jar-with-dependencies.jar /opt/jmx_exporter/$JAR
+COPY --from=javabuilder /opt/jmx_exporter/jmx_prometheus_httpserver/target/jmx_prometheus_httpserver-$VERSION-SNAPSHOT-jar-with-dependencies.jar /opt/jmx_exporter/$JAR
 
 RUN mkdir -p /opt/jmx_exporter
 COPY build/start.sh /opt/jmx_exporter/
