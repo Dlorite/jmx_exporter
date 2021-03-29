@@ -33,7 +33,6 @@ jobs:
         id: scan-local
         uses: sysdiglabs/scan-action@v3
         with:
-          sysdig-secure-url: "https://secure-staging.sysdig.com/"
           image-tag: "temp-jmx-exporter:latest"
           sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
           ignore-failed-scan: true
